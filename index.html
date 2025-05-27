@@ -255,13 +255,7 @@
                 width: calc(100% - 40px); /* Adjusted width for mobile devices */
             }
         }
-		.slider-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh; /* Adjust based on your layout */
-}
-
+	
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -410,6 +404,100 @@
         margin-top: 2rem;
       }
     }
+
+.slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh; /* Adjust based on your layout */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100vh; /* Make sure it fills the screen height */
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+ object-fit: cover;  /* Ensures the image covers the container */
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+.comparison-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+		  .slide-content h1 {
+			font-size: 3rem;
+			margin-bottom: 0.5rem;
+		  }
+	  
+		  .slide-content h2 {
+			font-size: 2rem;
+			margin-bottom: 0.5rem;
+		  }
+	  
+		  .slide-content p {
+			font-size: 1.2rem;
+		  }
+	  
+		  .arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 2rem;
+			background: rgba(0, 0, 0, 0.5);
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			cursor: pointer;
+			z-index: 3;
+		  }
+	  
+		  .arrow.left {
+			left: 20px;
+		  }
+	  
+		  .arrow.right {
+			right: 20px;
+		  }
+	  
+		 
+		  @media (max-width: 768px) {
+  .slide-content h1 {
+    font-size: 1.8rem;
+  }
+  .slide-content h2 {
+    font-size: 1.2rem;
+  }
+  .slide-content p {
+    font-size: 0.9rem;
+  }
+  .arrow {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+}
+
 		</style>
 	</head>
 	<body class="homepage4-body">
@@ -618,34 +706,38 @@
 
 		<!--===== HERO AREA STARTS =======-->
 		
-		<div class="slider-wrapper">
+	
+		
+		 
+		
+<div class="slider-wrapper">
 			<div class="slider" id="slider">
 			  <!-- Slide 1 -->
 			  <div class="slide">
 				<img src="assets/img/bg/events-in-bangalore2.png" alt="Image 2">
-				<!-- <div class="slide-content">
+				<div class="slide-content">
 				  <h1>Corporate Event Planning</h1>
 				  <h2>We are, The Event Planners In Bangalore</h2>
 				  <p>Elevate Every Event with Ascent Events</p>
-				</div> -->
+				</div>
 			  </div>
 			
 			  <!-- Slide 2 -->
 			  <div class="slide">
 				<img src="assets/img/bg/corporate events in bangalore.jpg" alt="Image 2">
-				<!-- <div class="slide-content">
+				<div class="slide-content">
 				  <h1>Corporate Event Planning</h1>
 				  <h2>We are, The Event Planners In Bangalore</h2>
 				  <p>Elevate Every Event with Ascent Events</p>
-				</div> -->
+				</div>
 			  </div>
 			  <div class="slide">
 				<img src="assets/img/bg/team1.jpg" alt="Image 2">
-				<!-- <div class="slide-content">
+				<div class="slide-content">
 				  <h1>Team Building activities</h1>
 				  <h2>We are, The Event Planners In Bangalore</h2>
 				  <p>Elevate Every Event with Ascent Events</p>
-				</div> -->
+				</div>
 			  </div>
 			</div>
 		
@@ -653,11 +745,6 @@
 			<button class="arrow left" onclick="prevSlide()">&#10094;</button>
 			<button class="arrow right" onclick="nextSlide()">&#10095;</button>
 		  </div>
-		
-		 
-		
-		
-
 	
 		
 	
@@ -1637,24 +1724,37 @@
 				</div>
 			</div>
 		</div>
+
 		<script>
-			let currentSlide = 0;
-		
-			function showSlide(index) {
-			  const slider = document.getElementById("slider");
-			  const totalSlides = slider.children.length;
-			  currentSlide = (index + totalSlides) % totalSlides;
-			  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-			}
-		
-			function prevSlide() {
-			  showSlide(currentSlide - 1);
-			}
-		
-			function nextSlide() {
-			  showSlide(currentSlide + 1);
-			}
-		  </script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const slider = document.getElementById('slider');
+
+  function showSlide(index) {
+    slider.style.transform =` translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Auto slide every 5 seconds
+  setInterval(nextSlide, 3000);
+
+  // Optional: Pause on hover
+  document.querySelector('.slider-wrapper').addEventListener('mouseenter', () => {
+    clearInterval(autoSlide);
+  });
+
+  let autoSlide = setInterval(nextSlide, 5000);
+</script>
 		<!--===== FOOTER AREA ENDS =======-->
 
 		<!--===== JS SCRIPT LINK =======-->
