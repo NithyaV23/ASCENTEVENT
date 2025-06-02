@@ -32,6 +32,7 @@ h4,
 h5,
 h6 {
   margin-bottom: 0;
+  margin-top: 2%;
 }
 
 input, textarea {
@@ -1595,9 +1596,9 @@ Location:
 }
 
 /*============= COMMON CSS AREA ENDS===============*/
-.sp1 {
+/* .sp1 {
   padding: 100px 0 100px;
-}
+} */
 @media (max-width: 767px) {
   .sp1 {
     padding: 50px 0 50px;
@@ -6603,8 +6604,9 @@ Location:
 .footer4-sertion-area {
   position: relative;
   z-index: 1;
-  background: ##fff;
-  padding: 200px 0 32px;
+  background: #fff;
+  margin-top: 3%;
+ 
 }
 .footer4-sertion-area .footer-logo-area img {
   width: 150px;
@@ -9655,8 +9657,8 @@ Location:
   z-index: 1;
 }
 .homepage4-body .header-area.homepage4 .header-elements .site-logo img {
-  width: 150px;
-  height: 70px;
+  width: 200px;
+  height: 80px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -16996,6 +16998,7 @@ Location:
   position: relative;
   z-index: 1;
   background: #1FA3A5;
+  margin-top: 2%;
 }
 .contact4-section-area .contact4-boxarea {
   position: relative;
@@ -21155,7 +21158,7 @@ Location:
   left: 0;
   top: 0;
   transition: all 0.4s;
-  background: var(--ztc-bg-bg-8);
+
   opacity: 0.8;
   border-radius: 8px;
 }
@@ -23960,6 +23963,7 @@ Location:
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+     margin-top: 2%;
   border-radius: 4px;
   transition: all 0.4s;
 }
